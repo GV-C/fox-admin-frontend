@@ -44,3 +44,6 @@ next-env.d.ts
 .vscode
 *storybook.log
 storybook-static
+
+# service accounts
+firebaseServiceAccountKey.json
