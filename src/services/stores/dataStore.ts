@@ -1,19 +1,21 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { Store } from "../types";
+import { DataStore } from "../types";
 
-export const useStore = create<Store>()(
+export const useDataStore = create<DataStore>()(
   persist(
     (set, get) => ({
-      test: "hello",
+      data: "hello data",
     }),
-    { name: "store", storage: createJSONStorage(() => localStorage),
-        version: 1,
+    {
+      name: "data-store",
+      storage: createJSONStorage(() => localStorage),
+      version: 1,
       migrate: (persistedState, version) => {
         if (version === 0) {
         }
         return persistedState;
       },
-     },
+    },
   ),
 );
