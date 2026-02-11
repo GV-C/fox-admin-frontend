@@ -21,6 +21,18 @@ export type DataStore = {
 
 export type SignInWithGoogle = (
   firebaseAdapter: FirebaseAdapter,
-) => (rememberMe: boolean) => Promise<User>;
+) => (rememberMe: boolean) => Promise<User | LocalError>;
 
 export type SignOut = (firebaseAdapter: FirebaseAdapter) => () => void;
+
+// Type guards
+// LocalError
+export function isLocalError(value: unknown): value is LocalError {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    "status" in value &&
+    "title" in value &&
+    "description" in value
+  );
+}
